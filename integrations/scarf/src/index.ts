@@ -19,7 +19,54 @@ export const handleFetchEvent: FetchPublishScriptEventCallback = async (
     }
 
   return new Response(
-    `<img class="hidden" referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=${pixelId}">`,
+    `
+    <script>
+      // Function to send tracking request with current URL as referrer
+      function trackScarfPixel() {
+        const pixelUrl = "https://static.scarf.sh/a.png?x-pxid=${pixelId}";
+        // Simple GET request using fetch API
+        fetch(pixelUrl, {
+          method: 'GET',
+          referrerPolicy: 'no-referrer-when-downgrade',
+          // We don't need to handle the response
+          cache: 'no-store'
+        }).catch(e => {
+          // Silently handle any errors to avoid breaking the page
+          console.debug('Scarf tracking error:', e);
+        });
+      }
+
+      // Track on initial page load
+      trackScarfPixel();
+
+      // Set up listener for route changes
+      if (typeof window !== 'undefined') {
+        // Override pushState method to track navigation changes
+        const pushState = history.pushState;
+        history.pushState = function() {
+          pushState.apply(this, arguments);
+          trackScarfPixel();
+        };
+        
+        // Override replaceState method as well, which is also used for navigation
+        const replaceState = history.replaceState;
+        history.replaceState = function() {
+          replaceState.apply(this, arguments);
+          trackScarfPixel();
+        };
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function() {
+          trackScarfPixel();
+        });
+
+        // Fallback for hash-based routing
+        window.addEventListener('hashchange', function() {
+          trackScarfPixel();
+        });
+      }
+    </script>
+    `,
     {
         headers: {
             'Content-Type': 'text/html',

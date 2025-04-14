@@ -13,7 +13,7 @@ script: ./src/index.ts
 # See https://developer.gitbook.com/integrations/configurations#scopes
 scopes:
     - site:script:inject
-organization: gitbook
+organization: EpwE1GTXs84xxoazQUp5
 contentSecurityPolicy:
     script-src: static.scarf.sh
 summary: |

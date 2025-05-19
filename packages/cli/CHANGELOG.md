@@ -1,5 +1,17 @@
 # @gitbook/cli
 
+## 0.23.0
+
+### Minor Changes
+
+- 2d1f642: Add site scope suggestions to gitbook new command
+
+## 0.22.0
+
+### Minor Changes
+
+- 43cecf9: Allow .raw.css files to be imported in the integration
+
 ## 0.21.2
 
 ### Patch Changes

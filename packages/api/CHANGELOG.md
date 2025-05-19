@@ -1,5 +1,35 @@
 # @gitbook/api
 
+## 0.115.0
+
+### Minor Changes
+
+- 6d36fa0: Bump API client to latest spec version
+
+## 0.114.0
+
+### Minor Changes
+
+- 202ff3d: Bump api to use the latest spec
+
+## 0.113.0
+
+### Minor Changes
+
+- aaad92c: Bump GitBook API version.
+
+## 0.112.0
+
+### Minor Changes
+
+- 7fe583c: Bump @gitbook/api to use the latest spec
+
+## 0.111.0
+
+### Minor Changes
+
+- 675f801: Bump API client with latest OpenAPI spec
+
 ## 0.110.0
 
 ### Minor Changes
